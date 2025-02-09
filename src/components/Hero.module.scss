@@ -18,14 +18,16 @@
     justify-content: center;
 
     h1 {
-      font-size: 8rem;
+      font-size: clamp(5rem, 10vw, 8rem);
+      white-space: nowrap;
       margin: 0;
       padding: 0;
       text-shadow: 0 0 10px #000;
     }
 
     p {
-      font-size: 1.4rem;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      white-space: nowrap;
       margin: 0;
       padding: 0;
       text-shadow: 0 0 10px #000;

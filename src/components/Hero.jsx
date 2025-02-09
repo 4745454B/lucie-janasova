@@ -1,4 +1,4 @@
-import classes from "./Home.module.scss";
+import classes from "./Hero.module.scss";
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -42,7 +42,6 @@ export default function Home() {
       scrollTrigger: {
         trigger: containerRef.current,
         start: "53% 50%",
-        markers: true,
         scrub: true,
       },
     });

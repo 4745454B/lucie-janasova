@@ -1,13 +1,15 @@
-import Home from "./components/Home.jsx";
+import Hero from "./components/Hero.jsx";
+import Nav from "./components/Nav.jsx";
 
 function App() {
   return (
-    <>
-      <Home />
+    <main className="relative min-h-screen w-screen overflow-x-hidden">
+      <Nav />
+      <Hero />
       <section
         style={{
           position: "relative",
-          zIndex: 1000,
+          zIndex: 3,
           backgroundColor: "#f8f8f8",
         }}
       >
@@ -353,7 +355,7 @@ function App() {
           temporibus non vel. Sit quidem repellendus obcaecati.
         </p>
       </section>
-    </>
+    </main>
   );
 }
 
