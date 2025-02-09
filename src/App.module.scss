@@ -1,0 +1,13 @@
+.quote {
+  text-shadow: 0 0 15px #000;
+  position: absolute;
+  bottom: 600px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: clamp(1.7rem, 4vw, 2rem);
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  padding: 1rem;
+}

@@ -7,12 +7,14 @@ import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import classes from "./App.module.scss";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   const canvasContainerRef = useRef(null);
   const canvasRef = useRef(null);
+  const quoteRef = useRef(null);
   const [position, setPosition] = useState([0, 0.5, 0]);
 
   useEffect(() => {
@@ -44,6 +46,21 @@ function App() {
         pinType: "transform",
       },
     });
+
+    gsap.fromTo(
+      quoteRef.current,
+      { opacity: 0, y: 100 },
+      {
+        opacity: 1,
+        y: 0,
+        scrollTrigger: {
+          trigger: quoteRef.current,
+          start: "top 80%",
+          end: "+=300",
+          scrub: 1,
+        },
+      }
+    );
   });
 
   return (
@@ -62,7 +79,7 @@ function App() {
             position: [0, 1, 4],
           }}
         >
-          <color attach="background" args={["#f5f5f5"]} />
+          <color attach="background" args={["#171717"]} />
           {/* Lighting */}
           <ambientLight intensity={1} />
           <directionalLight position={[1, 3, 6]} intensity={10} />
@@ -74,6 +91,9 @@ function App() {
             position={position}
           />
         </Canvas>
+        <div ref={quoteRef} className={classes.quote}>
+          Keramická dílna je tu pro Vás. Ideální místo pro Váš odpočinek.
+        </div>
       </section>
 
       <p>
