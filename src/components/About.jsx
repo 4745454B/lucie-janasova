@@ -54,7 +54,7 @@ export default function About() {
       ref={sectionRef}
       className="container mx-auto mt-40 flex flex-wrap items-center gap-8 px-8"
     >
-      <div ref={textRef} className="max-w-2xl flex-1 min-w-[500px] opacity-0">
+      <div ref={textRef} className="max-w-2xl flex-1 min-w-[350px] opacity-0">
         <h1 className="text-5xl">Můj příběh</h1>
         <p className="mt-5">
           Od malička mě vždy bavilo všelijaké vyrábění, pak přišla puberta,
@@ -66,7 +66,7 @@ export default function About() {
         </p>
       </div>
 
-      <div ref={imageRef} className="flex-1 min-w-[500px] opacity-0">
+      <div ref={imageRef} className="flex-1 min-w-[350px] opacity-0">
         <img
           src="/images/aboutUs.webp"
           alt="About us"
