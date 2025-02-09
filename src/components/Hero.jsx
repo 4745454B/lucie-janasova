@@ -70,7 +70,7 @@ export default function Home() {
   });
 
   return (
-    <div ref={containerRef} className={classes.container}>
+    <section ref={containerRef} className={classes.container}>
       <div ref={textRef} className={classes.text}>
         <h1 ref={keramikaTextRef}>
           {"KERAMIKA".split("").map((letter, index) => (
@@ -89,6 +89,6 @@ export default function Home() {
       </div>
 
       <div ref={heroRef} className={classes.hero} />
-    </div>
+    </section>
   );
 }

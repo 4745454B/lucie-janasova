@@ -42,23 +42,40 @@ const courses = [
 
 export default function Courses() {
   const sectionRef = useRef(null);
-  const cardsRef = useRef([]);
+  const coursesTextRef = useRef(null);
+  const coursesRef = useRef(null);
 
   useGSAP(
     () => {
       gsap.fromTo(
-        cardsRef.current,
-        { opacity: 0, y: 50 },
+        coursesTextRef.current,
+        { opacity: 0, x: -50 },
         {
           opacity: 1,
-          y: 0,
+          x: 0,
           duration: 1,
           ease: "power3.out",
-          stagger: 0.2,
           scrollTrigger: {
             trigger: sectionRef.current,
             start: "top 80%",
-            once: true, // Plays only once
+            once: true,
+          },
+        }
+      );
+
+      gsap.fromTo(
+        coursesRef.current.children, // Target each card
+        { opacity: 0 },
+        {
+          opacity: 1,
+          duration: 1,
+          delay: 0.5,
+          ease: "power3.out",
+          stagger: 0.2, // Small delay between cards
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 85%",
+            once: true,
           },
         }
       );
@@ -68,17 +85,18 @@ export default function Courses() {
 
   return (
     <section ref={sectionRef} className="container mx-auto mt-40 px-4">
-      <h1 className="text-4xl font-bold text-center mb-8">Rozvrh kurzů</h1>
+      <h1 ref={coursesTextRef} className="text-4xl font-bold text-center mb-8">
+        Rozvrh kurzů
+      </h1>
 
-      <div className="grid md:grid-cols-2 gap-6">
-        {courses.map((course, index) => (
+      <div ref={coursesRef} className="grid md:grid-cols-2 gap-6">
+        {courses?.map((course) => (
           <div
-            key={course.id}
-            ref={(el) => (cardsRef.current[index] = el)}
+            key={course?.id}
             className="bg-white shadow-lg rounded-xl p-6 border"
           >
             <h2 className="text-2xl font-semibold mb-4 text-gray-800">
-              {course.location}
+              {course?.location}
             </h2>
             <table className="w-full text-left text-gray-800">
               <thead>
@@ -89,7 +107,7 @@ export default function Courses() {
                 </tr>
               </thead>
               <tbody>
-                {course.schedule.map((session, idx) => (
+                {course?.schedule?.map((session, idx) => (
                   <tr key={idx} className="border-b">
                     <td className="py-2">{session.day}</td>
                     <td className="py-2">{session.time}</td>
