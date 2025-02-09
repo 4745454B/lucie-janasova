@@ -23,7 +23,7 @@ export default function About() {
           delay: 0.3,
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 80%",
+            start: "top 50%",
             once: true,
           },
         }
@@ -40,7 +40,7 @@ export default function About() {
           delay: 0.6,
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 80%",
+            start: "top 50%",
             once: true,
           },
         }

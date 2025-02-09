@@ -57,7 +57,7 @@ export default function Courses() {
           ease: "power3.out",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 80%",
+            start: "top 50%",
             once: true,
           },
         }
@@ -74,7 +74,7 @@ export default function Courses() {
           stagger: 0.2, // Small delay between cards
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 85%",
+            start: "top 50%",
             once: true,
           },
         }
