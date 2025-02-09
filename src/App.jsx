@@ -22,12 +22,12 @@ function App() {
 
   useEffect(() => {
     const updatePosition = () => {
-      if (window.innerHeight <= 800) {
-        setPosition([0, 0.1, 0]);
-        setScale(0.5);
+      if (window.innerWidth <= 500) {
+        setPosition([0, 0, 0]);
+        setScale(0.6);
       } else if (window.innerHeight <= 958) {
         setPosition([0, 0.2, 0]);
-        setScale(0.6);
+        setScale(0.8);
       } else {
         setPosition([0, 0.55, 0]);
         setScale(0.8);
