@@ -18,15 +18,19 @@ function App() {
   const canvasRef = useRef(null);
   const quoteRef = useRef(null);
   const [position, setPosition] = useState([0, 0.5, 0]);
+  const [scale, setScale] = useState(0.8);
 
   useEffect(() => {
     const updatePosition = () => {
       if (window.innerHeight <= 800) {
-        setPosition([0, 0.25, 0]);
+        setPosition([0, 0.1, 0]);
+        setScale(0.5);
       } else if (window.innerHeight <= 958) {
-        setPosition([0, 0.3, 0]);
+        setPosition([0, 0.2, 0]);
+        setScale(0.6);
       } else {
         setPosition([0, 0.55, 0]);
+        setScale(0.8);
       }
     };
 
@@ -89,7 +93,7 @@ function App() {
           <Leva collapsed hidden />
           <FracturedCeramicCat
             trigger={canvasContainerRef}
-            scale={0.8}
+            scale={scale}
             rotation={[0, Math.PI * 1.85, 0]}
             position={position}
           />
