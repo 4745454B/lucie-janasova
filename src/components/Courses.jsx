@@ -87,9 +87,9 @@ export default function Courses() {
     <section
       ref={sectionRef}
       id="courses"
-      className="container mx-auto mt-40 mb-40 px-4"
+      className="container mx-auto mt-40 px-4"
     >
-      <h1 ref={coursesTextRef} className="text-4xl font-bold text-center mb-8">
+      <h1 ref={coursesTextRef} className="text-5xl text-center mb-16">
         Rozvrh kurzů
       </h1>
 

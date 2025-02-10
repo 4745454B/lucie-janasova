@@ -10,6 +10,7 @@ import { useGSAP } from "@gsap/react";
 import classes from "./App.module.scss";
 import About from "./components/About.jsx";
 import Courses from "./components/Courses.jsx";
+import Gallery from "./components/Gallery.jsx";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -105,6 +106,7 @@ function App() {
 
       <About />
       <Courses />
+      <Gallery />
     </main>
   );
 }
