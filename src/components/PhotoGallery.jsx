@@ -1,11 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Gallery } from "react-grid-gallery";
 import Lightbox from "yet-another-react-lightbox";
 import { Thumbnails } from "yet-another-react-lightbox/plugins";
 import "yet-another-react-lightbox/styles.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
+import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap/gsap-core";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function PhotoGallery() {
+  const titleRef = useRef(null);
+  const titleRefs = useRef([]);
+  const galleryRefs = useRef([]);
   const [index, setIndex] = useState(-1);
   const [allImages, setAllImages] = useState([]);
   const [images, setImages] = useState({
@@ -80,67 +88,106 @@ export default function PhotoGallery() {
   }, []);
 
   const handleClick = (index, item) => {
-    console.log("item: ", item);
-
     const globalIndex = allImages.findIndex((img) => img.src === item.src);
-    console.log("globalIndex: ", globalIndex);
-
     setIndex(globalIndex);
   };
 
+  useGSAP(() => {
+    gsap.fromTo(
+      titleRef.current,
+      { opacity: 0, x: -50 },
+      {
+        opacity: 1,
+        x: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: titleRef.current,
+          start: "top 70%",
+          toggleActions: "play none none none",
+          once: true,
+        },
+      }
+    );
+
+    titleRefs.current.forEach((title) => {
+      if (!title) return;
+
+      gsap.fromTo(
+        title,
+        { opacity: 0, x: -50 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: title,
+            start: "top 70%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        }
+      );
+    });
+
+    galleryRefs.current.forEach((gallery) => {
+      if (!gallery) return;
+
+      gsap.fromTo(
+        gallery,
+        { opacity: 0, scale: 0.9 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: gallery,
+            start: "top 70%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+        }
+      );
+    });
+  }, []);
+
   return (
     <section id="about" className="container mx-auto mt-40 mb-40 px-4">
-      <h1 className="text-5xl text-center mb-16">Fotogalerie</h1>
+      <h1 ref={titleRef} className="text-5xl text-center mb-16">
+        Fotogalerie
+      </h1>
 
-      <h1 className="text-4xl mb-16">Velikonoce</h1>
+      {[
+        { title: "Velikonoce", key: "velikonoce" },
+        { title: "Květiny a vázy", key: "kvetinyAVazy" },
+        { title: "Zahrada", key: "zahrada" },
+        { title: "Vánoce", key: "vanoce" },
+        { title: "Podzim", key: "podzim" },
+        { title: "Misky a tácky", key: "miskyATacky" },
+        { title: "Kočky", key: "kocky" },
+      ].map(({ title, key }, i) => (
+        <div key={key} className="mb-24">
+          <h1
+            className="text-4xl mb-16 opacity-0"
+            ref={(el) => (titleRefs.current[i] = el)}
+          >
+            {title}
+          </h1>
 
-      <Gallery
-        images={images.velikonoce}
-        onClick={handleClick}
-        enableImageSelection={false}
-      />
-
-      <h1 className="text-4xl mt-24 mb-16">Květiny a vázy</h1>
-      <Gallery
-        images={images.kvetinyAVazy}
-        onClick={handleClick}
-        enableImageSelection={false}
-      />
-
-      <h1 className="text-4xl mt-24 mb-16">Zahrada</h1>
-      <Gallery
-        images={images.zahrada}
-        onClick={handleClick}
-        enableImageSelection={false}
-      />
-
-      <h1 className="text-4xl mt-24 mb-16">Vánoce</h1>
-      <Gallery
-        images={images.vanoce}
-        onClick={handleClick}
-        enableImageSelection={false}
-      />
-
-      <h1 className="text-4xl mt-24 mb-16">Podzim</h1>
-      <Gallery
-        images={images.podzim}
-        onClick={handleClick}
-        enableImageSelection={false}
-      />
-
-      <h1 className="text-4xl mt-24 mb-16">Misky a tácky</h1>
-      <Gallery
-        images={images.miskyATacky}
-        onClick={handleClick}
-        enableImageSelection={false}
-      />
-
-      <h1 className="text-4xl mt-24 mb-16">Kočky</h1>
-      <Gallery
-        images={images.kocky}
-        onClick={handleClick}
-        enableImageSelection={false}
-      />
+          <div
+            ref={(el) => (galleryRefs.current[i] = el)}
+            className="opacity-0"
+          >
+            <Gallery
+              images={images[key]}
+              onClick={handleClick}
+              enableImageSelection={false}
+            />
+          </div>
+        </div>
+      ))}
 
       <Lightbox
         open={index >= 0}
