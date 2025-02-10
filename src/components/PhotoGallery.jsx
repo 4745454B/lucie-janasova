@@ -63,12 +63,9 @@ export default function PhotoGallery() {
         })
       ),
       miskyATacky: Object.values(
-        import.meta.glob(
-          "/src/assets/images/gallery/miskyATacky/*.{jpg,jpeg}",
-          {
-            eager: true,
-          }
-        )
+        import.meta.glob("/src/assets/images/gallery/misky/*.{jpg,jpeg}", {
+          eager: true,
+        })
       ),
     };
 
