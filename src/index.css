@@ -307,3 +307,8 @@ canvas {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+.ReactGridGallery > div {
+  justify-content: center;
+  gap: 0.5rem;
+}
