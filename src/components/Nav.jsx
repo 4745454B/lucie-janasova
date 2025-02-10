@@ -3,7 +3,24 @@ import { useGSAP } from "@gsap/react";
 import { useWindowScroll } from "react-use";
 import { useEffect, useRef, useState } from "react";
 
-const navItems = ["Můj příběh", "Kontakt", "Fotogalerie"];
+const navItems = [
+  {
+    name: "Můj příběh",
+    link: "about",
+  },
+  {
+    name: "Kurzy",
+    link: "courses",
+  },
+  {
+    name: "Kontakt",
+    link: "contact",
+  },
+  {
+    name: "Fotogalerie",
+    link: "gallery",
+  },
+];
 
 const Nav = () => {
   const headerRef = useRef(null);
@@ -91,12 +108,8 @@ const Nav = () => {
           <div className="flex h-full items-center">
             <div ref={linksRef} className="hidden md:block">
               {navItems.map((item, index) => (
-                <a
-                  key={index}
-                  href={`#${item.toLowerCase()}`}
-                  className="nav-hover-btn"
-                >
-                  {Array.from(item).map((char, charIndex) => (
+                <a key={index} href={`#${item.link}`} className="nav-hover-btn">
+                  {Array.from(item.name).map((char, charIndex) => (
                     <span key={charIndex} className="inline-block">
                       {char === " " ? "\u00A0" : char}
                     </span>

@@ -84,7 +84,11 @@ export default function Courses() {
   );
 
   return (
-    <section ref={sectionRef} className="container mx-auto mt-40 mb-40 px-4">
+    <section
+      ref={sectionRef}
+      id="courses"
+      className="container mx-auto mt-40 mb-40 px-4"
+    >
       <h1 ref={coursesTextRef} className="text-4xl font-bold text-center mb-8">
         Rozvrh kurzů
       </h1>

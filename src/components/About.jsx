@@ -52,6 +52,7 @@ export default function About() {
   return (
     <section
       ref={sectionRef}
+      id="about"
       className="container mx-auto mt-40 flex flex-wrap items-center gap-8 px-8"
     >
       <div ref={textRef} className="max-w-2xl flex-1 min-w-[350px] opacity-0">
