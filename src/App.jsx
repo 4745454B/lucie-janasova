@@ -11,6 +11,8 @@ import classes from "./App.module.scss";
 import About from "./components/About.jsx";
 import Courses from "./components/Courses.jsx";
 import PhotoGallery from "./components/PhotoGallery.jsx";
+import Contact from "./components/Contact.jsx";
+import Footer from "./components/Footer.jsx";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -107,6 +109,8 @@ function App() {
       <About />
       <Courses />
       <PhotoGallery />
+      <Contact />
+      <Footer />
     </main>
   );
 }
