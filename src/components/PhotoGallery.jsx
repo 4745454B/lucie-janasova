@@ -151,7 +151,7 @@ export default function PhotoGallery() {
   }, []);
 
   return (
-    <section id="about" className="container mx-auto mt-40 mb-40 px-4">
+    <section id="gallery" className="container mx-auto mt-40 mb-40 px-4">
       <h1 ref={titleRef} className="text-5xl text-center mb-16">
         Fotogalerie
       </h1>
