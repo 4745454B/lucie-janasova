@@ -67,7 +67,7 @@ export default function About() {
         </p>
       </div>
 
-      <div ref={imageRef} className="flex-1 min-w-[350px] opacity-0">
+      <div ref={imageRef} className="flex-1 min-w-[350px] opacity-0 shadow-lg">
         <img
           src="/images/aboutUs.webp"
           alt="About us"

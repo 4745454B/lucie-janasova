@@ -89,7 +89,7 @@ function App() {
             position: [0, 1, 4],
           }}
         >
-          <color attach="background" args={["#171717"]} />
+          <color attach="background" args={["#f2f0eb"]} />
           {/* Lighting */}
           <ambientLight intensity={1} />
           <directionalLight position={[1, 3, 6]} intensity={10} />
