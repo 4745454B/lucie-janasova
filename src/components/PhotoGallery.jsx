@@ -7,6 +7,7 @@ import "yet-another-react-lightbox/plugins/thumbnails.css";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap/gsap-core";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import gallery_data from "../data/gallery_data.json";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,66 +17,15 @@ export default function PhotoGallery() {
   const galleryRefs = useRef([]);
   const [index, setIndex] = useState(-1);
   const [allImages, setAllImages] = useState([]);
-  const [images, setImages] = useState({
-    kocky: [],
-    velikonoce: [],
-    kvetinyAVazy: [],
-    zahrada: [],
-    vanoce: [],
-    podzim: [],
-    miskyATacky: [],
-  });
+  const [images, setImages] = useState({});
 
   useEffect(() => {
-    // Manually call `import.meta.glob()` for each folder
-    const _images = {
-      kocky: Object.values(
-        import.meta.glob("/src/assets/images/gallery/kocky/*.{jpg,jpeg}", {
-          eager: true,
-        })
-      ),
-      velikonoce: Object.values(
-        import.meta.glob("/src/assets/images/gallery/velikonoce/*.{jpg,jpeg}", {
-          eager: true,
-        })
-      ),
-      kvetinyAVazy: Object.values(
-        import.meta.glob(
-          "/src/assets/images/gallery/kvetinyAVazy/*.{jpg,jpeg}",
-          {
-            eager: true,
-          }
-        )
-      ),
-      zahrada: Object.values(
-        import.meta.glob("/src/assets/images/gallery/zahrada/*.{jpg,jpeg}", {
-          eager: true,
-        })
-      ),
-      vanoce: Object.values(
-        import.meta.glob("/src/assets/images/gallery/vanoce/*.{jpg,jpeg}", {
-          eager: true,
-        })
-      ),
-      podzim: Object.values(
-        import.meta.glob("/src/assets/images/gallery/podzim/*.{jpg,jpeg}", {
-          eager: true,
-        })
-      ),
-      miskyATacky: Object.values(
-        import.meta.glob("/src/assets/images/gallery/misky/*.{jpg,jpeg}", {
-          eager: true,
-        })
-      ),
-    };
-
-    // Convert each category into an array of image objects
     const formattedImages = Object.fromEntries(
-      Object.entries(_images).map(([category, modules]) => [
+      Object.entries(gallery_data).map(([category, imagePaths]) => [
         category,
-        modules.map((module) => ({
-          src: module.default,
-          thumbnail: module.default, // If you have separate thumbnails, replace this
+        imagePaths.map((path) => ({
+          src: `/src/assets/images/gallery/${path}`,
+          thumbnail: `/src/assets/images/gallery/${path}`,
         })),
       ])
     );
@@ -162,7 +112,7 @@ export default function PhotoGallery() {
         { title: "Zahrada", key: "zahrada" },
         { title: "Vánoce", key: "vanoce" },
         { title: "Podzim", key: "podzim" },
-        { title: "Misky a tácky", key: "miskyATacky" },
+        { title: "Misky a tácky", key: "misky" },
         { title: "Kočky", key: "kocky" },
       ].map(({ title, key }, i) => (
         <div key={key} className="mb-24">
@@ -178,7 +128,7 @@ export default function PhotoGallery() {
             className="opacity-0"
           >
             <Gallery
-              images={images[key]}
+              images={images[key] || []}
               onClick={handleClick}
               enableImageSelection={false}
             />
