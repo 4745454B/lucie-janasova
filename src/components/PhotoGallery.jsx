@@ -24,8 +24,8 @@ export default function PhotoGallery() {
       Object.entries(gallery_data).map(([category, imagePaths]) => [
         category,
         imagePaths.map((path) => ({
-          src: `/src/assets/images/gallery/${path}`,
-          thumbnail: `/src/assets/images/gallery/${path}`,
+          src: `/images/gallery/${path}`,
+          thumbnail: `/images/gallery/${path}`,
         })),
       ])
     );
